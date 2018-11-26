@@ -1,0 +1,117 @@
+<design designName="SPA">
+   <view name="rtl">
+      <instance name="SPA" iname="I_SPA"
+                xref="$SPA_HOME/source/design_source.xml">
+      </instance>
+   </view>
+   <ports>
+      <port pName="o_ARADDR" dir="output" size="[39:0]"/>
+      <port pName="o_ARBURST" dir="output" size="[1:0]"/>
+      <port pName="o_ARCACHE" dir="output" size="[3:0]"/>
+      <port pName="o_ARID" dir="output" size="[3:0]"/>
+      <port pName="o_ARLEN" dir="output" size="[3:0]"/>
+      <port pName="o_ARLOCK" dir="output" size="[1:0]"/>
+      <port pName="o_ARPROT" dir="output" size="[2:0]"/>
+      <port pName="o_ARSIZE" dir="output" size="[2:0]"/>
+      <port pName="o_ARVALID" dir="output"/>
+      <port pName="o_AWADDR" dir="output" size="[39:0]"/>
+      <port pName="o_AWBURST" dir="output" size="[1:0]"/>
+      <port pName="o_AWCACHE" dir="output" size="[3:0]"/>
+      <port pName="o_AWID" dir="output" size="[3:0]"/>
+      <port pName="o_AWLEN" dir="output" size="[3:0]"/>
+      <port pName="o_AWLOCK" dir="output" size="[1:0]"/>
+      <port pName="o_AWPROT" dir="output" size="[2:0]"/>
+      <port pName="o_AWSIZE" dir="output" size="[2:0]"/>
+      <port pName="o_AWVALID" dir="output"/>
+      <port pName="o_BREADY" dir="output"/>
+      <port pName="o_IRQ" dir="output"/>
+      <port pName="o_PRDATA" dir="output" size="[31:0]"/>
+      <port pName="o_RREADY" dir="output"/>
+      <port pName="o_WDATA" dir="output" size="[127:0]"/>
+      <port pName="o_WID" dir="output" size="[3:0]"/>
+      <port pName="o_WLAST" dir="output"/>
+      <port pName="o_WSTRB" dir="output" size="[15:0]"/>
+      <port pName="o_WVALID" dir="output"/>
+      <port pName="CLK" dir="input"/>
+      <port pName="i_ARESETn" dir="input"/>
+      <port pName="i_ARREADY" dir="input"/>
+      <port pName="i_AWREADY" dir="input"/>
+      <port pName="i_BID" dir="input" size="[3:0]"/>
+      <port pName="i_BRESP" dir="input" size="[1:0]"/>
+      <port pName="i_BVALID" dir="input"/>
+      <port pName="i_PADDR" dir="input" size="[10:0]"/>
+      <port pName="i_PENABLE" dir="input"/>
+      <port pName="i_PSEL" dir="input"/>
+      <port pName="i_PWDATA" dir="input" size="[31:0]"/>
+      <port pName="i_PWRITE" dir="input"/>
+      <port pName="i_RDATA" dir="input" size="[127:0]"/>
+      <port pName="i_RID" dir="input" size="[3:0]"/>
+      <port pName="i_RLAST" dir="input"/>
+      <port pName="i_RRESP" dir="input" size="[1:0]"/>
+      <port pName="i_RVALID" dir="input"/>
+      <port pName="i_TM" dir="input"/>
+      <port pName="i_TZPC" dir="input"/>
+      <port pName="i_WREADY" dir="input"/>
+      <port pName="rbist_sp_in" dir="input"/>
+      <port pName="rbist_sp_out" dir="output"/>
+      <port pName="rbist_dp_in" dir="input"/>
+      <port pName="rbist_dp_out" dir="output"/>
+      <port pName="rbist_tp_in" dir="input"/>
+      <port pName="rbist_tp_out" dir="output"/>
+   </ports>
+   <connections iname="I_SPA">
+      <connect pName="o_ARADDR" sigName="o_ARADDR"/>
+      <connect pName="o_ARBURST" sigName="o_ARBURST"/>
+      <connect pName="o_ARCACHE" sigName="o_ARCACHE"/>
+      <connect pName="o_ARID" sigName="o_ARID"/>
+      <connect pName="o_ARLEN" sigName="o_ARLEN"/>
+      <connect pName="o_ARLOCK" sigName="o_ARLOCK"/>
+      <connect pName="o_ARPROT" sigName="o_ARPROT"/>
+      <connect pName="o_ARSIZE" sigName="o_ARSIZE"/>
+      <connect pName="o_ARVALID" sigName="o_ARVALID"/>
+      <connect pName="o_AWADDR" sigName="o_AWADDR"/>
+      <connect pName="o_AWBURST" sigName="o_AWBURST"/>
+      <connect pName="o_AWCACHE" sigName="o_AWCACHE"/>
+      <connect pName="o_AWID" sigName="o_AWID"/>
+      <connect pName="o_AWLEN" sigName="o_AWLEN"/>
+      <connect pName="o_AWLOCK" sigName="o_AWLOCK"/>
+      <connect pName="o_AWPROT" sigName="o_AWPROT"/>
+      <connect pName="o_AWSIZE" sigName="o_AWSIZE"/>
+      <connect pName="o_AWVALID" sigName="o_AWVALID"/>
+      <connect pName="o_BREADY" sigName="o_BREADY"/>
+      <connect pName="o_IRQ" sigName="o_IRQ"/>
+      <connect pName="o_PRDATA" sigName="o_PRDATA"/>
+      <connect pName="o_RREADY" sigName="o_RREADY"/>
+      <connect pName="o_WDATA" sigName="o_WDATA"/>
+      <connect pName="o_WID" sigName="o_WID"/>
+      <connect pName="o_WLAST" sigName="o_WLAST"/>
+      <connect pName="o_WSTRB" sigName="o_WSTRB"/>
+      <connect pName="o_WVALID" sigName="o_WVALID"/>
+      <connect pName="CLK" sigName="CLK"/>
+      <connect pName="i_ARESETn" sigName="i_ARESETn"/>
+      <connect pName="i_ARREADY" sigName="i_ARREADY"/>
+      <connect pName="i_AWREADY" sigName="i_AWREADY"/>
+      <connect pName="i_BID" sigName="i_BID"/>
+      <connect pName="i_BRESP" sigName="i_BRESP"/>
+      <connect pName="i_BVALID" sigName="i_BVALID"/>
+      <connect pName="i_PADDR" sigName="i_PADDR"/>
+      <connect pName="i_PENABLE" sigName="i_PENABLE"/>
+      <connect pName="i_PSEL" sigName="i_PSEL"/>
+      <connect pName="i_PWDATA" sigName="i_PWDATA"/>
+      <connect pName="i_PWRITE" sigName="i_PWRITE"/>
+      <connect pName="i_RDATA" sigName="i_RDATA"/>
+      <connect pName="i_RID" sigName="i_RID"/>
+      <connect pName="i_RLAST" sigName="i_RLAST"/>
+      <connect pName="i_RRESP" sigName="i_RRESP"/>
+      <connect pName="i_RVALID" sigName="i_RVALID"/>
+      <connect pName="i_TM" sigName="i_TM"/>
+      <connect pName="i_TZPC" sigName="i_TZPC"/>
+      <connect pName="i_WREADY" sigName="i_WREADY"/>
+      <connect pName="rbist_sp_in" sigName="rbist_sp_in"/>
+      <connect pName="rbist_sp_out" sigName="rbist_sp_out"/>
+      <connect pName="rbist_dp_in" sigName="rbist_dp_in"/>
+      <connect pName="rbist_dp_out" sigName="rbist_dp_out"/>
+      <connect pName="rbist_tp_in" sigName="rbist_tp_in"/>
+      <connect pName="rbist_tp_out" sigName="rbist_tp_out"/>
+   </connections>
+</design>

@@ -1,0 +1,1147 @@
+<regdef name="SPA" reg_prefix="SPA">
+
+<ers embed="1" file="../doc/spa_ers.docx" />
+
+
+   <!-- Special Character Change.
+    &  to &amp;    
+    >> to &gt;&gt; 
+    << to &lt;&lt; 
+    >= to &gt; or =
+    <= to &lt; or =
+    => to -&gt;    
+    >  to &gt;     
+    <  to &lt;     
+   /-->            
+
+
+<register
+   name="SPA_SW_RESET_REG"
+   offset="0x0"
+   description="
+     It may influence all SoC operation to use SW Reset duing SPA processing. So, please use carefully when using reset control.
+     
+     SW Reset Use Guide
+     1: Set DMA_RESET
+     2: Check DMA RESET IRQ 
+     3: Set GLOBAL_RESET (Optional)"
+>
+
+  <field
+     name="DMA_RESET"
+     access="W1C"
+     lsb="0"
+     width="1"
+     default="0x0"
+     description="
+       DMA Reset(1: Reset)
+       - All DMA RX/TX registers are cleared
+       - If DMA RX and TX are in operation,  Reset is activated after finishing DMA operation.
+       And it is needed to check IRQ because IRQ is asserted at that time
+       
+       - When set to 1, it will be cleared automatically"
+  />
+
+  <field
+     name="GLOBAL_RESET"
+     access="W1C"
+     lsb="8"
+     width="1"
+     default="0x0"
+     description="
+       SW Reset(1: Reset)
+       All variables are cleared except for SFR
+       
+       - When set to 1, it will be cleared as 0 automatically"
+  />
+
+</register>
+
+<register
+   name="SPA_CORE_START_REG"
+   offset="0x4"
+   description="
+     Core Start "
+>
+
+  <field
+     name="CORE_START"
+     access="W1C"
+     lsb="0"
+     width="1"
+     default="0x0"
+     description="
+       IPRAW Core Start
+       
+       - When set to 1, it will be cleared automatically"
+  />
+
+  <field
+     name="CORE_BUSY"
+     access="RO"
+     lsb="1"
+     width="1"
+     default="0x0"
+     description="
+       Core Status
+       
+       It will be set to 1 if CORE_START is set. And, it will be cleared automatically after (TX_PAGE_DONE == 1)"
+  />
+
+</register>
+
+<register
+   name="SPA_MODE_REG"
+   offset="0x8"
+   description="
+     IPRAW Mode"
+>
+
+  <field
+     name="RX_COLOR_MODE"
+     access="RW"
+     lsb="0"
+     width="2"
+     default="0x1"
+     description="
+       RX Color Mode 
+       0 : Y
+       1 : RGB
+       2 : YCC  "
+  />
+
+  <field
+     name="TX_COLOR_MODE"
+     access="RW"
+     lsb="4"
+     width="2"
+     default="0x1"
+     description="
+       TX Color Mode 
+       0 : Y
+       1 : RGB
+       2 : YCC  "
+  />
+
+  <field
+     name="RX_DPI_MODE"
+     access="RW"
+     lsb="16"
+     width="3"
+     default="0x0"
+     description="
+       DPI Mode
+       0: RX 600x600  
+       1: RX 600x450
+       2: Unused
+       3: RX 600x300
+       4: RX 300x600
+       5: RX 300x450
+       6: Unused
+       7: RX 300x300
+       
+       @ RC1 enable , TX is 600x600 only
+       @ RC1 disable , TX DPI is the same as RX DPI."
+  />
+
+</register>
+
+<register
+   name="SPA_MODULE_EN_REG"
+   offset="0xC"
+   description="
+     Imaging Pipeline Enable"
+>
+
+  <field
+     name="VSD_EN"
+     access="RW"
+     lsb="0"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="CIS_EN"
+     access="RW"
+     lsb="1"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="RC1_EN"
+     access="RW"
+     lsb="2"
+     width="1"
+     default="0x1"
+     description="
+       Resolution Conversion(0: Disable, 1: Enable)
+       Note: fixed to 1"
+  />
+
+  <field
+     name="S1D_EN"
+     access="RW"
+     lsb="3"
+     width="1"
+     default="0x0"
+     description="
+       Gamma Correction (0: Disable, 1: Enable)"
+  />
+
+  <field
+     name="SEG1_EN"
+     access="RW"
+     lsb="4"
+     width="1"
+     default="0x0"
+     description="
+       SEG1(Edge Extraction) (0: Disable, 1: Enable)"
+  />
+
+  <field
+     name="SCC_EN"
+     access="RW"
+     lsb="5"
+     width="1"
+     default="0x0"
+     description="
+       Scan Color Correction (0: Disable, 1: Enable)
+       Note: enable in only RGB 3CH."
+  />
+
+  <field
+     name="SEG2_EN"
+     access="RW"
+     lsb="6"
+     width="1"
+     default="0x0"
+     description="
+       SEG2(Segmentation/Fringe Artifact Removal) (0: Disable, 1: Enable)
+       Note: enable in Y or YCC 3CH."
+  />
+
+  <field
+     name="ABSD_EN"
+     access="RW"
+     lsb="8"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="NEWABSD_EN"
+     access="RW"
+     lsb="9"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="MAGD_EN"
+     access="RW"
+     lsb="10"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ACS_EN"
+     access="RW"
+     lsb="11"
+     width="1"
+     default="0x0"
+     description="
+       ACS(0: Disable, 1: Enable)
+       Note: enable in Y or YCC 3CH."
+  />
+
+  <field
+     name="BLANK_EN"
+     access="RW"
+     lsb="12"
+     width="1"
+     default="0x0"
+     description="
+       BLANK (0: Disable, 1: Enable)"
+  />
+
+  <field
+     name="ACBD_EN"
+     access="RW"
+     lsb="13"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ORIENT_EN"
+     access="RW"
+     lsb="14"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="CLA_EN"
+     access="RW"
+     lsb="15"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="BDS_EN"
+     access="RW"
+     lsb="20"
+     width="1"
+     default="0x0"
+     description="
+       BDS (0: Disable, 1: Enable)"
+  />
+
+  <field
+     name="ADAPT_EN"
+     access="RW"
+     lsb="21"
+     width="1"
+     default="0x0"
+     description="
+       Adaptation Layer (0: Disable, 1: Enable)"
+  />
+
+  <field
+     name="SMAP_EN"
+     access="RW"
+     lsb="22"
+     width="1"
+     default="0x0"
+     description="
+       SMAP (0: Disable, 1: Enable)"
+  />
+
+  <field
+     name="TX_CH_EN"
+     access="RW"
+     lsb="23"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+</register>
+
+<register
+   name="SPA_RX_XD_REG"
+   offset="0x10"
+   description="
+     Input Image Width"
+>
+
+  <field
+     name="RX_XD"
+     access="RW"
+     lsb="0"
+     width="16"
+     default="0xFFFF"
+     description="
+       Image Width (Pixel unit) that is read by DMA RX
+       Image Width before Resolution Conversion
+       It can be set by pixel unit (1 Byte)"
+  />
+
+</register>
+
+<register
+   name="SPA_RX_YD_REG"
+   offset="0x14"
+   description="
+     Input Image Height"
+>
+
+  <field
+     name="RX_YD"
+     access="RW"
+     lsb="0"
+     width="16"
+     default="0xFFFF"
+     description="
+       "
+  />
+
+</register>
+
+<register
+   name="SPA_TX_IMG_SIZE_REG"
+   offset="0x18"
+   description="
+     Output Image Size(Width, Height)"
+>
+
+  <field
+     name="TX_XD"
+     access="RO"
+     lsb="0"
+     width="16"
+     default="0x0"
+     description="
+       if (RX_DPI_MODE &gt; or =4) TX_XD = (RX_XD + 127) / 128 * 128;
+       else                                     TX_XD = (RX_XD + 255)/256 * 256;"
+  />
+
+  <field
+     name="TX_YD"
+     access="RO"
+     lsb="16"
+     width="16"
+     default="0x0"
+     description="
+                 if (RX_DPI_MODE  == 0) TX_YD = (RX_YD + 255) /256 * 256;
+       else if (RX_DPI_MODE  == 1) TX_YD = (RX_YD +   95) /96 * 96;
+       else if (RX_DPI_MODE  == 3) TX_YD = (RX_YD + 63) /64 *64;
+       else  if (RX_DPI_MODE  == 4) TX_YD = (RX_YD + 255) /256 * 256;
+       else if (RX_DPI_MODE  == 5) TX_YD = (RX_YD +   95) /96 * 96;
+       else if (RX_DPI_MODE  == 7) TX_YD = (RX_YD + 63) /64 * 64;"
+  />
+
+</register>
+
+<register
+   name="SPA_RX_PADDING_VAL_REG"
+   offset="0x1C"
+   description="
+     Padding Value"
+>
+
+  <field
+     name="CH0_PADDING_VAL"
+     access="RW"
+     lsb="0"
+     width="8"
+     default="0xff"
+     description="
+       Channel0 padding value"
+  />
+
+  <field
+     name="CH1_PADDING_VAL"
+     access="RW"
+     lsb="8"
+     width="8"
+     default="0xff"
+     description="
+       Channel1 padding value"
+  />
+
+  <field
+     name="CH2_PADDING_VAL"
+     access="RW"
+     lsb="16"
+     width="8"
+     default="0xff"
+     description="
+       Channel2 padding value"
+  />
+
+</register>
+
+
+<register
+   name="SPA_VERSION_REG"
+   offset="0x24"
+   description="
+     Version"
+>
+
+  <field
+     name="VERSION"
+     access="RO"
+     lsb="0"
+     width="32"
+     default="0x20180312"
+     description="
+       Version "
+  />
+
+</register>
+
+
+
+<register
+   name="SPA_IRQ_ENABLE_REG"
+   offset="0x30"
+   description="
+     IRQ Enable"
+>
+
+  <field
+     name="RX_BAND_START_EN"
+     access="RW"
+     lsb="0"
+     width="1"
+     default="0x0"
+     description="
+       RX Start"
+  />
+
+  <field
+     name="RX_BAND_END_EN"
+     access="RW"
+     lsb="1"
+     width="1"
+     default="0x0"
+     description="
+       RX BAND End"
+  />
+
+  <field
+     name="TX_BAND_START_EN"
+     access="RW"
+     lsb="2"
+     width="1"
+     default="0x0"
+     description="
+       TX Start"
+  />
+
+  <field
+     name="BAND_END_EN"
+     access="RW"
+     lsb="3"
+     width="1"
+     default="0x0"
+     description="
+       Band End"
+  />
+
+  <field
+     name="PAGE_END_EN"
+     access="RW"
+     lsb="4"
+     width="1"
+     default="0x0"
+     description="
+       Page End"
+  />
+
+  <field
+     name="ABS_DETECT_DONE_EN"
+     access="RW"
+     lsb="5"
+     width="1"
+     default="0x0"
+     description="
+       ABS DETECT End"
+  />
+
+  <field
+     name="ADAPT_TX_END_EN"
+     access="RW"
+     lsb="6"
+     width="1"
+     default="0x0"
+     description="
+       ADAPT TX End"
+  />
+
+  <field
+     name="SMAP_TX_END_EN"
+     access="RW"
+     lsb="7"
+     width="1"
+     default="0x0"
+     description="
+       SMAP TX End"
+  />
+
+  <field
+     name="SW_RESET_DONE_EN"
+     access="RW"
+     lsb="8"
+     width="1"
+     default="0x0"
+     description="
+       SW_RESET_DONE"
+  />
+
+  <field
+     name="TX_ERR_EN"
+     access="RW"
+     lsb="9"
+     width="1"
+     default="0x0"
+     description="
+       Error Check"
+  />
+
+  <field
+     name="DTX_ADAPT_START_EN"
+     access="RW"
+     lsb="10"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DTX_SMAP_START_EN"
+     access="RW"
+     lsb="11"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DMA_TX_ADDR_ERR_CH0_EN"
+     access="RW"
+     lsb="12"
+     width="1"
+     default="0x0"
+     description="
+       This bit will be pendded if DMA address exceeds the limit address that decided in advance"
+  />
+
+  <field
+     name="DMA_TX_ADDR_ERR_CH1_EN"
+     access="RW"
+     lsb="13"
+     width="1"
+     default="0x0"
+     description="
+       This bit will be pendded if DMA address exceeds the limit address that decided in advance"
+  />
+
+  <field
+     name="DMA_TX_ADDR_ERR_CH2_EN"
+     access="RW"
+     lsb="14"
+     width="1"
+     default="0x0"
+     description="
+       This bit will be pendded if DMA address exceeds the limit address that decided in advance"
+  />
+
+  <field
+     name="MAGD_DONE_EN"
+     access="RW"
+     lsb="15"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="CLA_DONE_EN"
+     access="RW"
+     lsb="16"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ADAPT_TX_ADDR_ERR_EN"
+     access="RW"
+     lsb="17"
+     width="1"
+     default="0x0"
+     description="
+       Error Check"
+  />
+
+  <field
+     name="SMAP_TX_ADDR_ERR_EN"
+     access="RW"
+     lsb="18"
+     width="1"
+     default="0x0"
+     description="
+       Error Check"
+  />
+
+  <field
+     name="TBL_DMA_END_EN"
+     access="RW"
+     lsb="19"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="TX_YD_ERR_EN"
+     access="RW"
+     lsb="20"
+     width="1"
+     default="0x0"
+     description="
+       Error Check"
+  />
+
+  <field
+     name="RX_ERR_EN"
+     access="RW"
+     lsb="21"
+     width="1"
+     default="0x0"
+     description="
+       Error Check"
+  />
+
+  <field
+     name="BDS_TX_END_EN"
+     access="RW"
+     lsb="22"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DTX_BDS_START_EN"
+     access="RW"
+     lsb="23"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="BDS_TX_ADDR_ERR_EN"
+     access="RW"
+     lsb="24"
+     width="1"
+     default="0x0"
+     description="
+       Error Check"
+  />
+
+  <field
+     name="ORI_DONE_EN"
+     access="RW"
+     lsb="25"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="nABSD_DETECT_DONE_EN"
+     access="RW"
+     lsb="26"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ACBD_DETECT_DONE_EN"
+     access="RW"
+     lsb="27"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ACS_DONE_EN"
+     access="RW"
+     lsb="28"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="VSD_DONE_EN"
+     access="RW"
+     lsb="29"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="TX_CH_START_ERR_EN"
+     access="RW"
+     lsb="30"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="TX_PAGE_END_EN"
+     access="RW"
+     lsb="31"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+</register>
+
+<register
+   name="SPA_IRQ_PEND_REG"
+   offset="0x34"
+   description="
+     IRQ Pending"
+>
+
+  <field
+     name="RX_BAND_START"
+     access="W1C"
+     lsb="0"
+     width="1"
+     default="0x0"
+     description="
+       RX Start"
+  />
+
+  <field
+     name="RX_BAND_END"
+     access="W1C"
+     lsb="1"
+     width="1"
+     default="0x0"
+     description="
+       RX Band End"
+  />
+
+  <field
+     name="TX_BAND_START"
+     access="W1C"
+     lsb="2"
+     width="1"
+     default="0x0"
+     description="
+       TX Start"
+  />
+
+  <field
+     name="BAND_END"
+     access="W1C"
+     lsb="3"
+     width="1"
+     default="0x0"
+     description="
+       SPA Band End"
+  />
+
+  <field
+     name="PAGE_END"
+     access="W1C"
+     lsb="4"
+     width="1"
+     default="0x0"
+     description="
+       SPAPage End"
+  />
+
+  <field
+     name="ABSD_DETECT_END"
+     access="W1C"
+     lsb="5"
+     width="1"
+     default="0x0"
+     description="
+       ABS DETECT End"
+  />
+
+  <field
+     name="ADAPT_TX_END"
+     access="W1C"
+     lsb="6"
+     width="1"
+     default="0x0"
+     description="
+       ADAPT TX End"
+  />
+
+  <field
+     name="SMAP_TX_END"
+     access="W1C"
+     lsb="7"
+     width="1"
+     default="0x0"
+     description="
+       THUMB TX End"
+  />
+
+  <field
+     name="DMA_STOP_DONE"
+     access="W1C"
+     lsb="8"
+     width="1"
+     default="0x0"
+     description="
+       IPRAW_RESET Error(IPRAW_RESET == 1 when DMA are busy)"
+  />
+
+  <field
+     name="TX_ERR"
+     access="W1C"
+     lsb="9"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DTX_ADAPT_START_ERR"
+     access="W1C"
+     lsb="10"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DTX_SMAP_START_ERR"
+     access="W1C"
+     lsb="11"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DMA_TX_ADDR_ERR_CH0"
+     access="W1C"
+     lsb="12"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DMA_TX_ADDR_ERR_CH1"
+     access="W1C"
+     lsb="13"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DMA_TX_ADDR_ERR_CH2"
+     access="W1C"
+     lsb="14"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="MAGD_DONE"
+     access="W1C"
+     lsb="15"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="CLA_DONE"
+     access="W1C"
+     lsb="16"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ADAPT_TX_ADDR_ERR"
+     access="W1C"
+     lsb="17"
+     width="1"
+     default="0x0"
+     description="
+       This bit will be pendded if DMA address exceeds the limit address that decided in advance"
+  />
+
+  <field
+     name="SMAP_TX_ADDR_ERR"
+     access="W1C"
+     lsb="18"
+     width="1"
+     default="0x0"
+     description="
+       This bit will be pendded if DMA address exceeds the limit address that decided in advance"
+  />
+
+  <field
+     name="TBL_DMA_END"
+     access="W1C"
+     lsb="19"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="TX_YD_ERR"
+     access="W1C"
+     lsb="20"
+     width="1"
+     default="0x0"
+     description="
+       This bit will be pendded if Set Height &lt; Processing Height while Height is unknown."
+  />
+
+  <field
+     name="RX_ERR"
+     access="W1C"
+     lsb="21"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="BDS_TX_END"
+     access="W1C"
+     lsb="22"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="DTX_BDS_START_ERR"
+     access="W1C"
+     lsb="23"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="BDS_TX_ADDR_ERR"
+     access="W1C"
+     lsb="24"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ORI_DONE"
+     access="W1C"
+     lsb="25"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="nABSD_DETECT_DONE"
+     access="W1C"
+     lsb="26"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ACBD_DETECT_DONE"
+     access="W1C"
+     lsb="27"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="ACS_DONE"
+     access="W1C"
+     lsb="28"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="VSD_DONE"
+     access="W1C"
+     lsb="29"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="TX_CH_START_ERR"
+     access="W1C"
+     lsb="30"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+  <field
+     name="TX_PAGE_END"
+     access="W1C"
+     lsb="31"
+     width="1"
+     default="0x0"
+     description="
+       "
+  />
+
+</register>
+
+
+</regdef>

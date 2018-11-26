@@ -1,0 +1,16 @@
+
+diary_exe : memo.o calendar.o main.o
+	gcc -o diary_exe memo.o calendar.o main.o
+
+memo.o : memo.c
+	gcc -c -o memo.o memo.c
+
+calendar.o : calendar.c
+	gcc -c -o calendar.o calendar.c
+
+main.o : main.c
+	gcc -c -o main.o main.c
+
+clean : 
+	rm *.o diary_exe
+
