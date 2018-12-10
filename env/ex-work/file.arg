@@ -1,0 +1,15 @@
++incdir+./
++incdir+./rtl
+
+//--------------------------------------------------
+-v /nfshome/PROJECT/soc_adt_svn/trunk/aaa8990/dev/design/hvt_c16_neg.v
+-v /nfshome/PROJECT/soc_adt_svn/trunk/aaa8990/dev/design/lvt_c14_neg.v
+-v /nfshome/PROJECT/soc_adt_svn/trunk/aaa8990/dev/design/lvt_c16_neg.v
+-v /nfshome/PROJECT/soc_adt_svn/trunk/aaa8990/dev/design/rvt_c14_neg.v
+-v /nfshome/PROJECT/soc_adt_svn/trunk/aaa8990/dev/design/rvt_c16_neg.v
+
+//==============================================================================
++incdir+/home/B110011/PROJECT/98.cmbus/01.design/10.cmbus/20.wrap/final
++incdir+/home/B110011/PROJECT/98.cmbus/01.design/10.cmbus/20.wrap/final/rtl
+
+

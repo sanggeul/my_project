@@ -1,0 +1,17 @@
+#!/bin/bash
+rm -rf INCA_libs &> /dev/null
+
+    #+nowarn+STARMR \
+    #+nowarn+MRSTAR \
+    #+loadpli1=mm_nc_dynamic:mgboot_nc \
+ncverilog \
+    +nc64bit \
+    +nowarn+MRSTAR \
+    -c \
+    +access+r \
+    +nc64bit \
+    -f wrap.arg \
+    wrap.inc \
+    $* \
+
+rm -rf INCA_libs &> /dev/null
