@@ -133,7 +133,8 @@ set t_ti= t_te=
 "set foldmethod=marker
 "set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 "set gfn=D2Coding\ Regular\ 14 " for linux
-set guifont=D2Coding:h12 "for win and mac
+"set guifont=D2Coding:h12 "for win and mac
+set guifont=D2Coding:h11 "for win and mac
 
 " ,t Toggle Taglist
 map ,t :TlistToggle<CR>
