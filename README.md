@@ -1,6 +1,6 @@
-# my_project
-my project
+# workplace
+my_project
 
-@gmail.com
+account with @gmail.com
 
 1
