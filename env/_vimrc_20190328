@@ -1,0 +1,312 @@
+"--------------------------------------------------------------------------------
+"     File Name           :     /v/067/leesangg/.vimrc
+"     Created By          :     leesangg
+"     Creation Date       :     [2018-04-06 00:02]
+"     Last Modified       :     [2018-11-16 05:35]
+"     Description         :     _vimrc configuration      
+"--------------------------------------------------------------------------------
+
+syntax on
+if has("gui_running")
+    "Vundle
+    set nocompatible              " be iMproved, required
+    "set shell=/bin/bash
+    filetype off                  " required
+        
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    
+    call vundle#begin()
+    " alternatively, pass a path where Vundle should install plugins
+    "call vundle#begin('~/some/path/here')
+    
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+    "Plugin 'gmarik/Vundle.vim'
+    "Plugin 'vundle'
+    
+    " The following are examples of different formats supported.
+    " Keep Plugin commands between vundle#begin/end.
+    " plugin on GitHub repo
+    "Plugin 'tpope/vim-fugitive'
+    " plugin from http://vim-scripts.org/vim/scripts.html
+    " Plugin 'L9'
+    " Git plugin not hosted on GitHub
+    """Plugin 'git://git.wincent.com/command-t.git'
+    " git repos on your local machine (i.e. when working on your own plugin)
+    """Plugin 'file:///home/gmarik/path/to/plugin'
+    " The sparkup vim script is in a subdirectory of this repo called vim.
+    " Pass the path to set the runtimepath properly.
+    "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+    " Install L9 and avoid a Naming conflict if you've already installed a
+    " different version somewhere else.
+    " Plugin 'ascenator/L9', {'name': 'newL9'}
+    
+    " All of your Plugins must be added before the following line
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/nerdcommenter'
+    "Plugin 'The-NERD-tree'
+    Plugin 'chrisbra/csv.vim'
+    Plugin 'c.vim'
+    Plugin 'catalinciurea/perl-nextmethod'
+    Plugin 'octol/vim-cpp-enhanced-highlight'
+    "Plugin 'valloric/youcompleteme' " need new vim ver. (over 7.4x)
+    "Plugin 'emacsmodeline.vim'
+    Plugin 'verilog_emacsauto.vim'
+    "Plugin 'antoinemadec/vim-verilog-instance'
+    "Plugin 'kdurant/verilog-testbench'
+    "Plugin 'tpope/vim-commentary'
+    "Plugin 'alpertuna/vim-header'
+    Plugin 'shanzi/autoheader'
+    Plugin 'vhda/verilog_systemverilog.vim'
+    Plugin 'drmikehenry/vim-headerguard'
+    Plugin 'wuhong40/vim_new_file'
+    Plugin 'automatic-for-verilog'
+
+    Plugin 'junegunn/fzf.vim'
+    Plugin 'itchyny/lightline.vim'
+    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'mattn/emmet-vim'
+    
+    " theme
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'nanotech/jellybeans.vim'
+    Plugin 'morhetz/gruvbox'
+	Plugin 'majutsushi/tagbar'    
+    
+    call vundle#end()            " required
+    filetype plugin indent on    " required
+    " To ignore plugin indent changes, instead use:
+    "filetype plugin on
+    "
+    " Brief help
+    " :PluginList       - lists configured plugins
+    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+    "
+    " see :h vundle for more details or wiki for FAQ
+    " Put your non-Plugin stuff after this line
+endif
+
+""""""""""""""""""""
+"""NORMAL SETTING"""
+"""""""""""""""""""" 
+filetype on
+
+set ignorecase 
+set smartcase
+set nowrapscan  "turn off search wrapping
+set incsearch 
+set nu
+set showcmd
+set hls
+set title
+set ru
+set sc
+set bs=indent,eol,start
+set sm
+set ci
+set si " can not be used in verilog
+set ai
+set paste
+set sw=4
+set ts=4
+set diffopt+=iwhite
+set history=1000
+set vb t_vb=
+"set et " tab -> space
+
+set fenc=utf-8
+set fencs=utf-8,cp949,unicode
+set encoding=utf-8
+
+set fileencoding=korea
+set encoding=korea
+set km=startsel,stopsel
+
+set nobackup
+set nowritebackup
+set selectmode=mouse
+set autowrite
+
+set t_ti= t_te=
+"set foldmethod=marker
+"set gfn=Bitstream\ Vera\ Sans\ Mono:h10
+"set gfn=D2Coding\ Regular\ 14 " for linux
+"set guifont=D2Coding:h12 "for win and mac
+set guifont=D2Coding:h11 "for win and mac
+
+" ,t Toggle Taglist
+map ,t :TlistToggle<CR>
+map ,h :Header<CR>
+map ,s :Commenter<CR>
+map ,S :CommenterS<CR>
+"map ,va :!vauto %<CR>
+"map ,vd :!vdel %<CR>
+"vauto \a \d
+
+map ,0  a({@"vl-width"{1'b0}}),<ESC>
+map ,1  a({@"vl-width"{1'b1}}),<ESC>
+map ,`  a(_NC_@"vl-cell-name"_@"vl-name"[]),<ESC>
+
+" move to other tabs
+map <C-t><up> :tabr<cr>
+map <C-t><down> :tabl<cr>
+map <C-t><left> :tabp<cr>
+map <C-t><right> :tabn<cr>
+map <C-t>k :tabr<cr>
+map <C-t>j :tabl<cr>
+map <C-t>h :tabp<cr>
+map <C-t>l :tabn<cr>
+
+set isfname-=, "for ncverilog log
+set isfname-=+ "for ncverilog incdir/define
+set isfname-== "for bash/csh script
+
+""""""""""""""""""""""""
+"""BACKGROUND SETTING"""
+""""""""""""""""""""""""
+"" for vi
+syntax on
+set background=dark
+colorscheme desert
+
+" The following items are available options, but do not need to be
+" included in your .vimrc as they are currently set to their defaults.
+
+" let g:solarized_termtrans=0
+" let g:solarized_degrade=0
+" let g:solarized_bold=1
+" let g:solarized_underline=1
+" let g:solarized_italic=1
+" let g:solarized_termcolors=16
+" let g:solarized_contrast="normal"
+" let g:solarized_diffmode="normal"
+" let g:solarized_hitrail=0
+" let g:solarized_menu=1
+
+"source ~/.vimcolor
+"hi clear
+"if exists("syntax_on")
+"   syntax reset
+"endif
+
+""""""""""""""""""""""
+""GUI MODE SETTING""""
+""""""""""""""""""""""
+if has("gui_running")
+
+    set foldmethod=marker
+    set cursorline
+    set cursorcolumn
+
+    au GUIEnter * winsize 120 30
+    au GUIEnter * winpos   10 10
+
+    "let loaded_explorer=1
+    "let g:explVertical=1
+    "let g:explSplitBelow=1
+    let g:explSplitRight=1
+    let g:explStartRight=0
+    let g:explStartBelow=0
+    "let g:explWinSize=""
+    "let g:explDetailedList=1
+
+    "set lines=50
+    "set columns=150
+    set guitablabel=[%N]\ %t\ %M
+
+    """"""""""""""""""""""""
+    """BACKGROUND SETTING"""
+    """"""""""""""""""""""""
+    let g:solarized_visibility="high"    "default value is normal
+    syntax enable
+    set background=dark
+    "set background=light
+    "colorscheme solarized
+    "colorscheme jellybeans
+    colorscheme gruvbox
+
+    " how to use ? ... for gruvbox
+	map <silent> <F5> :call gruvbox#bg_toggle()<CR>
+	imap <silent> <F5> <ESC>:call gruvbox#bg_toggle()<CR>a
+	vmap <silent> <F5> <ESC>:call gruvbox#bg_toggle()<CR>gv
+
+	map <silent> <F4> :call gruvbox#hls_toggle()<CR>
+	imap <silent> <F4> <ESC>:call gruvbox#hls_toggle()<CR>a
+	vmap <silent> <F4> <ESC>:call gruvbox#hls_toggle()<CR>gv
+
+	"nnoremap <silent> <CR> :call gruvbox#hls_hide()<CR><CR>
+
+	"nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+	"nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+	"nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+	" gruvbox set
+
+	"Tagbar
+	nmap <F8> :TagbarToggle<CR>
+
+	" have to add to gruvbox.vim
+	"function! gruvbox#bg_toggle()
+	"  if &background == "light"
+	"    call gruvbox#bg_dark()
+	"  else
+	"    call gruvbox#bg_light()
+	"  endif
+	"endfunction
+	"
+	"function! gruvbox#bg_dark()
+	"  set bg=dark
+	"endfunction
+	"
+	"function! gruvbox#bg_light()
+	"  set bg=light
+	"endfunction
+
+endif
+
+function! Incr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfunction
+vnoremap <C-a> :call Incr()<CR>
+
+function! Decr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-x>"
+    endif
+    normal `<
+endfunction
+vnoremap <C-x> :call Decr()<CR>
+
+nnoremap <leader>u :VerilogGotoInstanceStart<CR>
+nnoremap <leader>i :VerilogFollowInstance<CR>
+nnoremap <leader>p :VerilogFollowPort<CR>
+
+"" Use he name directly from http://vim-scripts.org/vim/scripts.html
+""plugin 'vividchalk.vim'
+"" Plugin from Github repo
+""Plugin 'tomasr/molokai'
+"
+""emacs --batch {filenames...} -f verilog-batch-auto
+
+
+"systemVerilog HDL
+au BufNewFile,BufRead  *.sv  so  ~/.vim/syntax/verilog_systemverilog.vim
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+
+
+
+
+
