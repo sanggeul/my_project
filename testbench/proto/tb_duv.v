@@ -41,7 +41,7 @@ always begin
 end
 
 // instance
-duv U0 (
+duv u_duv (
     .clk    (clk)
    ,.nreset (nreset)
    ,.sel    (sel)

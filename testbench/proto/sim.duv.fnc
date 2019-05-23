@@ -5,7 +5,6 @@ echo $0
 
 mkdir -p dump
 mkdir -p log
-mkdir -p log/autobackup
 
 SIM=$(echo $0 | cut -f2 -d'/' | cut -f1 -d. | tr '[:upper:]' '[:lower:]')
 DUV=$(echo $0 | cut -f2 -d'/' | cut -f2 -d. | tr '[:upper:]' '[:lower:]')

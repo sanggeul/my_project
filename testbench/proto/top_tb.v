@@ -1,7 +1,9 @@
 
 `timescale 1ns/1ps
 
-`ifdef ARBITER
+`ifdef DUV
+	`include "tb_duv.v"
+`elsif ARBITER
 	`include "tb_arbiter.v"
 `else // DUV
 	`include "tb_duv.v"

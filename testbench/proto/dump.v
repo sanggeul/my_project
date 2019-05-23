@@ -11,8 +11,8 @@ initial begin
 	`endif
 
 	// dump scope
-	$fsdbDumpvars(0, tb);
-	//$fsdbDumpvars(0, U0);
+	$fsdbDumpvars(1, tb);
+	$fsdbDumpvars(0, tb.u_duv);
 end
 
 endmodule

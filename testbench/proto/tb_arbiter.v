@@ -39,7 +39,7 @@ always begin
 end
 
 // instance
-arbiter U0 (
+arbiter u_duv (
     .clk    (clk)
    ,.nreset (nreset)
    ,.req_0  (req0)

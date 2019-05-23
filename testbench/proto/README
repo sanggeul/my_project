@@ -1,0 +1,41 @@
+#========================
+# README for simulation
+# 2019.05.23 updated 
+
+
+* File Composition
+  - sim.{ip_name}.fnc
+    : run simulation
+    : user defined
+  - top_tb.v
+    : include tb_{ip_name}.v
+    : include dump.{ip_name}.v
+    : +@ 
+  - dump.{ip_name}.v
+    : defined dump scope
+  - tb_{ip_name}.v
+    : ip specific testbench
+  - filelist.{ip_name}.f
+    : ip specific filelist
+  - rtl/*.v
+    : source files
+  - 
+
+
+* Generated Files
+  - dump/dump.{ip_name}.fnc.fsdb
+    : generated dump file
+  - log/sim.{ip_name}.fnc.log
+    : generated log file
+  - 
+
+
+* Simulation Lists
+  - duv
+    : simple mux.
+  - arbiter
+    : simple arbiter
+    : 2-req signals, 2-gnt signals
+  - 
+
+
