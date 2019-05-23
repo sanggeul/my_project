@@ -41,6 +41,7 @@ ncverilog \
 	+nc64bit \
 	+access+r \
 	+functional_mode \
+	-sv \
     +nclibdirname+${LIBDIR} \
     -l ./log/${SIM}.${DUV}.${FNC}.log \
 	${OPTION} \

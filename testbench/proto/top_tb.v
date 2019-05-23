@@ -5,6 +5,10 @@
 	`include "tb_duv.v"
 `elsif ARBITER
 	`include "tb_arbiter.v"
+`elsif ARRAY
+	`include "tb_array.v"
+`elsif DYNAMIC
+	`include "tb_dynamic.v"
 `else // DUV
 	`include "tb_duv.v"
 `endif
