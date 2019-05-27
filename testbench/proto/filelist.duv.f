@@ -1,1 +1,1 @@
-filelist.f
+-v ./rtl/duv.v
