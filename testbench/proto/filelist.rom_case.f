@@ -1,0 +1,1 @@
+-v ./rtl/rom_case.v

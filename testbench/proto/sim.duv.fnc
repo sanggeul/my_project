@@ -33,7 +33,7 @@ fi
 
 #----------------------------------------
 # define libdir
-LIBDIR="libs_${SIM}.${DUV}.${FNC}"
+LIBDIR="./lib/libs_${SIM}.${DUV}.${FNC}"
 mkdir -p ${LIBDIR}
 
 

@@ -9,6 +9,12 @@
 	`include "./tb/tb_array.v"
 `elsif DYNAMIC
 	`include "./tb/tb_dynamic.v"
+`elsif RAM_SP_SR_SW
+	`include "./tb/tb_ram_sp_sr_sw.v"
+`elsif ROM_READMEMB
+	`include "./tb/tb_rom_readmemb.v"
+`elsif ROM_CASE
+	`include "./tb/tb_rom_case.v"
 `else // DUV
 	`include "./tb/tb_duv.v"
 `endif
