@@ -1,0 +1,11 @@
+reset 
+write 0008 00000002
+write 0010 20000200
+write 0014 00001000
+ttreq 1
+start 1
+write 0010 A0000200
+write 0014 00001000
+i_eop 1
+o_eop 1
+wait  10

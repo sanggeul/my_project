@@ -15,6 +15,8 @@
 	`include "./tb/tb_rom_readmemb.v"
 `elsif ROM_CASE
 	`include "./tb/tb_rom_case.v"
+`elsif READLINE
+	`include "./tb/tb_readline.v"
 `else // DUV
 	`include "./tb/tb_duv.v"
 `endif
